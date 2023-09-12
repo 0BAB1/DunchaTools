@@ -11,7 +11,6 @@ from interface import Ui_MainWindow
 from threads import PdfExctract
 # importer les script
 from calculator import calc
-from extractor.gather import getData
 
 class Window(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
