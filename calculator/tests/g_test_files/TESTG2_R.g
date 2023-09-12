@@ -1,0 +1,7 @@
+M06 T0101
+
+G0X0Z0
+
+G2X300Z300R300G94F21.22
+
+(temps éstimé : 60*22.206 secondes)

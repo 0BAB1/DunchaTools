@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>514</width>
+    <height>406</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_7">
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
+      <widget class="QWidget" name="home">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="styleSheet">
+           <string notr="true">background-color : transparent;
+border : none;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="images.qrc">
+            <normaloff>:/logo/logo/duncha.png</normaloff>:/logo/logo/duncha.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>300</width>
+            <height>300</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Selectionnez une action dans la barre en haut a gauche</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="gcode">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="titleGCODE">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Estimateur code G</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="topWidgetGcode" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QLabel" name="descLabelSourceGcode">
+             <property name="text">
+              <string>Choisir un fichier source :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="sourceGcode" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="btnSourceGcode">
+                <property name="text">
+                 <string>Ouvrir ...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelSourceGcode">
+                <property name="text">
+                 <string>Choisir fichier ...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="descLabelDestGcode">
+             <property name="text">
+              <string>Choisir un ficher de destination (.CSV)  :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="destGcode" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QPushButton" name="btnDestGcode">
+                <property name="text">
+                 <string>Engistrer sous ...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelDestGcode">
+                <property name="text">
+                 <string>Choisir destination ...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QWidget" name="bottomWidgetGcode" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Preferred</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnCalcGcode">
+             <property name="text">
+              <string>Lancer éstimation</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Preferred</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="gcodeTuto">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="etapeZeroGcode">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Comment faire une estimation de temps ?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="etapeUnGcode">
+          <property name="text">
+           <string>1 - Aller dans la barre de menu -&gt; GCode -&gt; Calculer.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="etapeDeuxGcode">
+          <property name="text">
+           <string>2 - Selectionnez votre fichier source, contenant tout le code G que vous souhaitez estimer.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="etapeTroisGcode">
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistrée les estimation </string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="etapeQuatreGcode">
+          <property name="text">
+           <string>4 - Lancez l'éstimation. Vous pouvez ensuite retrouver le fichier Excel au format CSV là où vous l'avez enregistré.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pdf">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QLabel" name="titlePDF">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Extracteur data PDF</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="topWidgetPdf" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QLabel" name="descLabelSourcePdf">
+             <property name="text">
+              <string>Choisir les fichiers source :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="sourcePdf" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QPushButton" name="btnSourcePdf">
+                <property name="text">
+                 <string>Ouvrir ...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelSourcePdf">
+                <property name="text">
+                 <string>Choisir fichier ...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="descLabelDestPdf">
+             <property name="text">
+              <string>Choisir un ficher de destination (.CSV) :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="destPdf" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QPushButton" name="btnDestPdf">
+                <property name="text">
+                 <string>Engistrer sous ...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelDestPdf">
+                <property name="text">
+                 <string>Choisir destination ...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>63</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QWidget" name="bottomWidgetPdf" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Preferred</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnCalcPdf">
+             <property name="text">
+              <string>Lancer extration</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Preferred</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QProgressBar" name="pBarPdf">
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="textVisible">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pdfTuto">
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QLabel" name="etapeZeroPdf">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Comment faire une extraction de data ?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="etapeUnPdf">
+          <property name="text">
+           <string>1 - Aller dans la barre de menu -&gt;PDF -&gt; Extraire.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="etapeDeuxPdf">
+          <property name="text">
+           <string>2 - Selectionnez vos fichiesr pdf, utilisez CTRL + Click ou SHIFT + Click pour en selectionner plusieurs..</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="etapeTroisPdf">
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistrée les données</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="etapeQuatrePdf">
+          <property name="text">
+           <string>4 - Lancez l'extraction. Ce processus prend 3 à 4 secondes par fichier. Vous pouvez ensuite trouver les données dans le fichier Excel au format CSV là où vous l'avez enregistré</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>514</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGCODE">
+    <property name="title">
+     <string>GCODE</string>
+    </property>
+    <addaction name="actionCalculer"/>
+    <addaction name="actionTutorielGcode"/>
+   </widget>
+   <widget class="QMenu" name="menuPDF">
+    <property name="title">
+     <string>PDF</string>
+    </property>
+    <addaction name="actionExtraire"/>
+    <addaction name="actionTutorielPdf"/>
+   </widget>
+   <widget class="QMenu" name="menuAccueil">
+    <property name="title">
+     <string>Accueil</string>
+    </property>
+    <addaction name="actionAccueil"/>
+   </widget>
+   <addaction name="menuGCODE"/>
+   <addaction name="menuPDF"/>
+   <addaction name="menuAccueil"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionCalculer">
+   <property name="text">
+    <string>Calculer</string>
+   </property>
+  </action>
+  <action name="actionTutorielGcode">
+   <property name="text">
+    <string>Tutoriel</string>
+   </property>
+  </action>
+  <action name="actionExtraire">
+   <property name="text">
+    <string>Extraire</string>
+   </property>
+  </action>
+  <action name="actionTutorielPdf">
+   <property name="text">
+    <string>Tutoriel</string>
+   </property>
+  </action>
+  <action name="actionAccueil">
+   <property name="text">
+    <string>Accueil</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections/>
+</ui>
