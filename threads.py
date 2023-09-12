@@ -1,5 +1,6 @@
 import sys
 from PyQt6.QtCore import QObject, QThread, pyqtSignal
+from extractor.gather import getData
         
 class PdfExctract(QThread):
     """Thread a lancer pour extraire la data d'une liste de pdf"""
