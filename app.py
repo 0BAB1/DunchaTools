@@ -13,6 +13,7 @@ from threads import PdfExctract
 from calculator import calc
 
 class Window(QMainWindow, Ui_MainWindow):
+    """Fenetre principale, herite de l'UI réalisée dans QTDesigner (interface.py)"""
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
