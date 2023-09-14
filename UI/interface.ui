@@ -32,8 +32,8 @@ border : none;</string>
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="images.qrc">
-            <normaloff>:/logo/logo/duncha.png</normaloff>:/logo/logo/duncha.png</iconset>
+           <iconset>
+            <normaloff>logo/duncha.png</normaloff>logo/duncha.png</iconset>
           </property>
           <property name="iconSize">
            <size>

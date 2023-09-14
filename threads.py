@@ -26,6 +26,6 @@ class PdfExctract(QThread):
         with open(self.destination, "w+") as dest :
             for line in data:
                 for element in line :
-                    dest.write(str(element).replace("\n","") + ";")
+                    dest.write(str(element).replace("\n","").replace(".", ",") + ";")
                 dest.write("\n")
         
