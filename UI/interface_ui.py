@@ -16,17 +16,59 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QMainWindow,
-    QMenu, QMenuBar, QProgressBar, QPushButton,
-    QSizePolicy, QSpacerItem, QStackedWidget, QStatusBar,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QHBoxLayout, QLabel,
+    QMainWindow, QMenu, QMenuBar, QProgressBar,
+    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
+    QStatusBar, QVBoxLayout, QWidget)
 import images_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(514, 406)
+        MainWindow.resize(514, 416)
+        MainWindow.setStyleSheet(u"*{\n"
+"	background-color : transparent;\n"
+"	margin : 0;\n"
+"	padding : 0;\n"
+"	border : none;\n"
+"}\n"
+"\n"
+"#MainWindow{\n"
+"	background-color : #DDDDDD;\n"
+"}\n"
+"\n"
+"#menubar{\n"
+"	background-color: #393E46;\n"
+"	color : #EEEEEE;\n"
+"}\n"
+"\n"
+"#menubar *{\n"
+"	background-color: #393E46;\n"
+"	color : #EEEEEE;\n"
+"}\n"
+"\n"
+"#pBarPdf{\n"
+"	background-color : #393E46;\n"
+"	border-radius : 5px;\n"
+"}\n"
+"\n"
+"#centralwidget{\n"
+"	background-color : #DDDDDD;\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"	color : white;\n"
+"	background-color : #222831;\n"
+"	padding : 5px 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	color : white;\n"
+"	background-color : #393E46;\n"
+"	padding : 5px 15px;\n"
+"}\n"
+"")
         self.actionCalculer = QAction(MainWindow)
         self.actionCalculer.setObjectName(u"actionCalculer")
         self.actionTutorielGcode = QAction(MainWindow)
@@ -39,6 +81,7 @@ class Ui_MainWindow(object):
         self.actionAccueil.setObjectName(u"actionAccueil")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setStyleSheet(u"")
         self.verticalLayout_7 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.stackedWidget = QStackedWidget(self.centralwidget)
@@ -128,6 +171,11 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_4.addWidget(self.destGcode)
+
+        self.excelModeBox = QCheckBox(self.topWidgetGcode)
+        self.excelModeBox.setObjectName(u"excelModeBox")
+
+        self.verticalLayout_4.addWidget(self.excelModeBox)
 
 
         self.verticalLayout_3.addWidget(self.topWidgetGcode)
@@ -351,7 +399,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -373,6 +421,7 @@ class Ui_MainWindow(object):
         self.descLabelDestGcode.setText(QCoreApplication.translate("MainWindow", u"Choisir un ficher de destination (.CSV)  :", None))
         self.btnDestGcode.setText(QCoreApplication.translate("MainWindow", u"Engistrer sous ...", None))
         self.labelDestGcode.setText(QCoreApplication.translate("MainWindow", u"Choisir destination ...", None))
+        self.excelModeBox.setText(QCoreApplication.translate("MainWindow", u"Excel Mode", None))
         self.btnCalcGcode.setText(QCoreApplication.translate("MainWindow", u"Lancer \u00e9stimation", None))
         self.etapeZeroGcode.setText(QCoreApplication.translate("MainWindow", u"Comment faire une estimation de temps ?", None))
         self.etapeUnGcode.setText(QCoreApplication.translate("MainWindow", u"1 - Aller dans la barre de menu -> GCode -> Calculer.", None))

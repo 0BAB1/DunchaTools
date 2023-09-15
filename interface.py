@@ -12,8 +12,51 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(514, 406)
+        MainWindow.resize(514, 416)
+        MainWindow.setStyleSheet("*{\n"
+"    background-color : transparent;\n"
+"    margin : 0;\n"
+"    padding : 0;\n"
+"    border : none;\n"
+"}\n"
+"\n"
+"#MainWindow{\n"
+"    background-color : #DDDDDD;\n"
+"}\n"
+"\n"
+"#menubar{\n"
+"    background-color: #393E46;\n"
+"    color : #EEEEEE;\n"
+"}\n"
+"\n"
+"#menubar *{\n"
+"    background-color: #393E46;\n"
+"    color : #EEEEEE;\n"
+"}\n"
+"\n"
+"#pBarPdf{\n"
+"    background-color : #393E46;\n"
+"    border-radius : 5px;\n"
+"}\n"
+"\n"
+"#centralwidget{\n"
+"    background-color : #DDDDDD;\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"    color : white;\n"
+"    background-color : #222831;\n"
+"    padding : 5px 15px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    color : white;\n"
+"    background-color : #393E46;\n"
+"    padding : 5px 15px;\n"
+"}\n"
+"")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
@@ -84,6 +127,9 @@ class Ui_MainWindow(object):
         self.labelDestGcode.setObjectName("labelDestGcode")
         self.horizontalLayout_2.addWidget(self.labelDestGcode)
         self.verticalLayout_4.addWidget(self.destGcode)
+        self.checkBox = QtWidgets.QCheckBox(parent=self.topWidgetGcode)
+        self.checkBox.setObjectName("checkBox")
+        self.verticalLayout_4.addWidget(self.checkBox)
         self.verticalLayout_3.addWidget(self.topWidgetGcode)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem)
@@ -252,7 +298,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAccueil.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -266,6 +312,7 @@ class Ui_MainWindow(object):
         self.descLabelDestGcode.setText(_translate("MainWindow", "Choisir un ficher de destination (.CSV)  :"))
         self.btnDestGcode.setText(_translate("MainWindow", "Engistrer sous ..."))
         self.labelDestGcode.setText(_translate("MainWindow", "Choisir destination ..."))
+        self.checkBox.setText(_translate("MainWindow", "Excel Mode"))
         self.btnCalcGcode.setText(_translate("MainWindow", "Lancer éstimation"))
         self.etapeZeroGcode.setText(_translate("MainWindow", "Comment faire une estimation de temps ?"))
         self.etapeUnGcode.setText(_translate("MainWindow", "1 - Aller dans la barre de menu -> GCode -> Calculer."))
