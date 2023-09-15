@@ -10,7 +10,7 @@ from interface import Ui_MainWindow
 #importer sub-classe de QT customisées
 from threads import PdfExctract
 # importer les script
-from calculator import calc
+from gcodeEstimator import estimation
 
 class Window(QMainWindow, Ui_MainWindow):
     """Fenetre principale, herite de l'UI réalisée dans QTDesigner (interface.py)"""
@@ -18,6 +18,7 @@ class Window(QMainWindow, Ui_MainWindow):
         super().__init__(parent)
         self.setupUi(self)
         self.connectSignalsSlots()
+        self.setWindowTitle("Duncha toolbox")
         #page par defaut : home page
         self.stackedWidget.setCurrentWidget(self.home)
         #attributs fichiers
@@ -84,15 +85,13 @@ class Window(QMainWindow, Ui_MainWindow):
             
     def run_estimation(self):
         """lancer l'estimation gcode"""
-        if not self.sourceFileGcode or not self.destination : return False
-        data = calc.calc(self.sourceFileGcode)
-        with open(self.destination, "w+") as file :
-            file.write("temps total :" + ";" + str(data[0]) + "\n")
-            for line in data[1]:
-                for columnElement in line:
-                    file.write(str(columnElement).replace(".",",") + ";")
-                file.write("\n")
-        return True
+        excel_mode = False
+        if self.checkBox.isChecked() : excel_mode = True
+        if not self.sourceFileGcode or not self.destination : return
+        
+        data = estimation.run(self.sourceFileGcode, excel_mode=excel_mode)
+        
+        estimation.makeCsv(self.destination, data)
 
     def run_extraction(self):
         """lancer le thread de l'extraction pdf"""
