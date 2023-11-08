@@ -65,7 +65,7 @@ QPushButton:hover{
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="home">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -288,7 +288,7 @@ border : none;</string>
            <bool>false</bool>
           </property>
           <property name="text">
-           <string>3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistrée les estimation </string>
+           <string>3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistrée les estimation. Pour avoir plus de détails sur les conditions de coupes (si codées explicitement), cochez &quot;Excel Mode&quot;</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>

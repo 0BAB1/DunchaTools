@@ -399,7 +399,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -426,7 +426,7 @@ class Ui_MainWindow(object):
         self.etapeZeroGcode.setText(QCoreApplication.translate("MainWindow", u"Comment faire une estimation de temps ?", None))
         self.etapeUnGcode.setText(QCoreApplication.translate("MainWindow", u"1 - Aller dans la barre de menu -> GCode -> Calculer.", None))
         self.etapeDeuxGcode.setText(QCoreApplication.translate("MainWindow", u"2 - Selectionnez votre fichier source, contenant tout le code G que vous souhaitez estimer.", None))
-        self.etapeTroisGcode.setText(QCoreApplication.translate("MainWindow", u"3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistr\u00e9e les estimation ", None))
+        self.etapeTroisGcode.setText(QCoreApplication.translate("MainWindow", u"3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistr\u00e9e les estimation. Pour avoir plus de d\u00e9tails sur les conditions de coupes (si cod\u00e9es explicitement), cochez \"Excel Mode\"", None))
         self.etapeQuatreGcode.setText(QCoreApplication.translate("MainWindow", u"4 - Lancez l'\u00e9stimation. Vous pouvez ensuite retrouver le fichier Excel au format CSV l\u00e0 o\u00f9 vous l'avez enregistr\u00e9.", None))
         self.titlePDF.setText(QCoreApplication.translate("MainWindow", u"Extracteur data PDF", None))
         self.descLabelSourcePdf.setText(QCoreApplication.translate("MainWindow", u"Choisir les fichiers source :", None))
