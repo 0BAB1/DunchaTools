@@ -1,16 +1,23 @@
 #IMPORTS
 #générique
-import sys
+import sys ,os, time
 # QT & QTDesignerUI imports
 from PyQt6.QtWidgets import (
     QApplication, QFileDialog, QMainWindow,
 )
 from PyQt6.uic import loadUi
+from PyQt6 import QtGui
 from interface import Ui_MainWindow
 #importer sub-classe de QT customisées
 from threads import PdfExctract
 # importer les script
 from gcodeEstimator import estimation
+
+#to display taskbar icon
+    
+import ctypes
+myappid = u'mycompany.myproduct.subproduct.version' # arbitrary string
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 class Window(QMainWindow, Ui_MainWindow):
     """Fenetre principale, herite de l'UI réalisée dans QTDesigner (interface.py)"""
@@ -110,7 +117,11 @@ class Window(QMainWindow, Ui_MainWindow):
             self.btnCalcPdf.setEnabled(True)
             
 if __name__ == "__main__":
+    
     app = QApplication(sys.argv)
     win = Window()
     win.show()
+    basedir = os.path.dirname(__file__)
+    app.setWindowIcon(QtGui.QIcon(os.path.join(basedir,"UI", 'logo', 'favicon.ico')))
+    
     sys.exit(app.exec())
