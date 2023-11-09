@@ -1,5 +1,6 @@
 import sys
 from PyQt6.QtCore import QObject, QThread, pyqtSignal
+from PyQt6.QtWidgets import QMessageBox
 from extractor.gather import getData
         
 class PdfExctract(QThread):
@@ -24,9 +25,11 @@ class PdfExctract(QThread):
             for item in dataTemp:
                 data.append(item)
             self._signal.emit(i)
+            
         with open(self.destination, "w+") as dest :
             for line in data:
                 for element in line :
                     dest.write(str(element).replace("\n","").replace(".", ",") + ";")
                 dest.write("\n")
+        
         
