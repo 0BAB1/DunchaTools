@@ -1,9 +1,13 @@
 import os
 import pdfplumber as pb
-from . import clear_sorted_data as clear
-from . import sort
+try :
+    from . import clear_sorted_data as clear
+    from . import sort
+except ImportError:
+    import clear_sorted_data as clear
+    import sort
 
-def getData(file_path : list) -> list:
+def getData(file_path : list, text_mode = False) -> list:
     """extraire la data des tableaux d'un fichier pdf"""
     #modele de data : [[ligne 1 du csv final], [ligne2], [etc...], etc...]
     data = []
@@ -11,15 +15,25 @@ def getData(file_path : list) -> list:
     with pb.open(file_path) as pdf:
         #lire chaque page
         for page in pdf.pages:
-            #extraire les tebleaux de la page
-            tables = page.find_tables()
+            
+            if not text_mode:
+                #extraire les tebleaux de la page
+                tables = page.find_tables()
 
-            for table in tables:
-                table = table.extract()
-                #lire chaque ligne (de chaque page) (de chque tableau)
-                for line in table:
+                for table in tables:
+                    table = table.extract()
+                    #lire chaque ligne (de chaque page) (de chque tableau)
+                    for line in table:
+                        data.append(line)
+                    
+            elif text_mode:
+                #extraire le texte de la page
+                text = page.extract_text()
+                #lire chaque ligne (de chaque page)
+                for line in text.split("\n"):
+                    line = sort.treat_line(line)
                     data.append(line)
-
+                    
         print(file_path.split("/")[-1] + " was successfully processed ! Processing next file ...")
 
     return data

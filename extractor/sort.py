@@ -15,3 +15,7 @@ def sort(data_folder : str) -> None:
 def get_file_extension(file_path :str) -> str:
     """returns the file extension"""
     return file_path.split(".")[-1]
+
+def treat_line(line : str) -> list:
+    line = line.split(" ")
+    return line

@@ -65,7 +65,7 @@ QPushButton:hover{
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="home">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -381,6 +381,13 @@ border : none;</string>
              </layout>
             </widget>
            </item>
+           <item>
+            <widget class="QCheckBox" name="textModeBox">
+             <property name="text">
+              <string>Analyse brute</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -467,7 +474,7 @@ border : none;</string>
            </font>
           </property>
           <property name="text">
-           <string>Comment faire une extraction de data ?</string>
+           <string>Comment faire une extraction de data de PDF à CSV ?</string>
           </property>
          </widget>
         </item>
@@ -494,7 +501,7 @@ border : none;</string>
            <bool>false</bool>
           </property>
           <property name="text">
-           <string>3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistrée les données</string>
+           <string>3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistrée les données. Cochez la case &quot;analyse brute&quot; pour les fichiers plus dirs a traiter (sans tableaux). Attention a la mise en forme!</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
