@@ -215,6 +215,9 @@ class Ui_MainWindow(object):
         self.labelDestPdf.setObjectName("labelDestPdf")
         self.horizontalLayout_6.addWidget(self.labelDestPdf)
         self.verticalLayout_5.addWidget(self.destPdf)
+        self.textModeBox = QtWidgets.QCheckBox(parent=self.topWidgetPdf)
+        self.textModeBox.setObjectName("textModeBox")
+        self.verticalLayout_5.addWidget(self.textModeBox)
         self.verticalLayout_6.addWidget(self.topWidgetPdf)
         spacerItem3 = QtWidgets.QSpacerItem(20, 63, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_6.addItem(spacerItem3)
@@ -298,7 +301,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAccueil.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -326,11 +329,12 @@ class Ui_MainWindow(object):
         self.descLabelDestPdf.setText(_translate("MainWindow", "Choisir un ficher de destination (.CSV) :"))
         self.btnDestPdf.setText(_translate("MainWindow", "Engistrer sous ..."))
         self.labelDestPdf.setText(_translate("MainWindow", "Choisir destination ..."))
+        self.textModeBox.setText(_translate("MainWindow", "Analyse brute"))
         self.btnCalcPdf.setText(_translate("MainWindow", "Lancer extration"))
-        self.etapeZeroPdf.setText(_translate("MainWindow", "Comment faire une extraction de data ?"))
+        self.etapeZeroPdf.setText(_translate("MainWindow", "Comment faire une extraction de data de PDF à CSV ?"))
         self.etapeUnPdf.setText(_translate("MainWindow", "1 - Aller dans la barre de menu ->PDF -> Extraire."))
         self.etapeDeuxPdf.setText(_translate("MainWindow", "2 - Selectionnez vos fichiesr pdf, utilisez CTRL + Click ou SHIFT + Click pour en selectionner plusieurs.."))
-        self.etapeTroisPdf.setText(_translate("MainWindow", "3 - Selectionner le fichier de destination CSV. c\'est ce fichier Excel dans lequel seront enregistrée les données"))
+        self.etapeTroisPdf.setText(_translate("MainWindow", "3 - Selectionner le fichier de destination CSV. c\'est ce fichier Excel dans lequel seront enregistrée les données. Cochez la case \"analyse brute\" pour les fichiers plus dirs a traiter (sans tableaux). Attention a la mise en forme!"))
         self.etapeQuatrePdf.setText(_translate("MainWindow", "4 - Lancez l\'extraction. Ce processus prend 3 à 4 secondes par fichier. Vous pouvez ensuite trouver les données dans le fichier Excel au format CSV là où vous l\'avez enregistré"))
         self.menuGCODE.setTitle(_translate("MainWindow", "GCODE"))
         self.menuPDF.setTitle(_translate("MainWindow", "PDF"))

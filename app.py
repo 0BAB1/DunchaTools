@@ -103,8 +103,10 @@ class Window(QMainWindow, Ui_MainWindow):
     def run_extraction(self):
         """lancer le thread de l'extraction pdf"""
         if not self.sourceFilePdf or not self.destination : return False
+        text_mode = False
+        if self.textModeBox.isChecked() : text_mode = True
         #lancer le THREAD PDF
-        self.thread = PdfExctract(self.sourceFilePdf, self.destination)
+        self.thread = PdfExctract(self.sourceFilePdf, self.destination, text_mode=text_mode)
         self.thread._signal.connect(self.signal_accept)
         self.thread.start()
         self.btnCalcPdf.setEnabled(False)

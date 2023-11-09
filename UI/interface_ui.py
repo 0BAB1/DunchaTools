@@ -300,6 +300,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.destPdf)
 
+        self.textModeBox = QCheckBox(self.topWidgetPdf)
+        self.textModeBox.setObjectName(u"textModeBox")
+
+        self.verticalLayout_5.addWidget(self.textModeBox)
+
 
         self.verticalLayout_6.addWidget(self.topWidgetPdf)
 
@@ -399,7 +404,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -435,11 +440,12 @@ class Ui_MainWindow(object):
         self.descLabelDestPdf.setText(QCoreApplication.translate("MainWindow", u"Choisir un ficher de destination (.CSV) :", None))
         self.btnDestPdf.setText(QCoreApplication.translate("MainWindow", u"Engistrer sous ...", None))
         self.labelDestPdf.setText(QCoreApplication.translate("MainWindow", u"Choisir destination ...", None))
+        self.textModeBox.setText(QCoreApplication.translate("MainWindow", u"Analyse brute", None))
         self.btnCalcPdf.setText(QCoreApplication.translate("MainWindow", u"Lancer extration", None))
-        self.etapeZeroPdf.setText(QCoreApplication.translate("MainWindow", u"Comment faire une extraction de data ?", None))
+        self.etapeZeroPdf.setText(QCoreApplication.translate("MainWindow", u"Comment faire une extraction de data de PDF \u00e0 CSV ?", None))
         self.etapeUnPdf.setText(QCoreApplication.translate("MainWindow", u"1 - Aller dans la barre de menu ->PDF -> Extraire.", None))
         self.etapeDeuxPdf.setText(QCoreApplication.translate("MainWindow", u"2 - Selectionnez vos fichiesr pdf, utilisez CTRL + Click ou SHIFT + Click pour en selectionner plusieurs..", None))
-        self.etapeTroisPdf.setText(QCoreApplication.translate("MainWindow", u"3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistr\u00e9e les donn\u00e9es", None))
+        self.etapeTroisPdf.setText(QCoreApplication.translate("MainWindow", u"3 - Selectionner le fichier de destination CSV. c'est ce fichier Excel dans lequel seront enregistr\u00e9e les donn\u00e9es. Cochez la case \"analyse brute\" pour les fichiers plus dirs a traiter (sans tableaux). Attention a la mise en forme!", None))
         self.etapeQuatrePdf.setText(QCoreApplication.translate("MainWindow", u"4 - Lancez l'extraction. Ce processus prend 3 \u00e0 4 secondes par fichier. Vous pouvez ensuite trouver les donn\u00e9es dans le fichier Excel au format CSV l\u00e0 o\u00f9 vous l'avez enregistr\u00e9", None))
         self.menuGCODE.setTitle(QCoreApplication.translate("MainWindow", u"GCODE", None))
         self.menuPDF.setTitle(QCoreApplication.translate("MainWindow", u"PDF", None))
