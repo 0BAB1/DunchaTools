@@ -5,6 +5,12 @@
 - extracteur de données PDF
 - estimateur de temps GCODE (openSource)
 
+## Lancer
+
+```git clone https://github.com/0BAB1/DunchaTools```
+```pip install -r requirements.txt```
+```cd DunchaTools && git clone https://github.com/0BAB1/gcodeEstimator```
+
 ## build :
 
 ```
