@@ -136,30 +136,40 @@ class Window(QMainWindow, Ui_MainWindow):
         #lancer le THREAD PDF
         try :
             open(self.destination, "w+")
-    
-            self.thread = PdfExctract(self.sourceFilePdf, self.destination, text_mode=text_mode)
-            self.thread._signal.connect(self.signal_accept)
-            self.thread.start()
-            self.btnCalcPdf.setEnabled(False)
             
         except Exception as e:
             msg = QMessageBox()
             msg.setText("Error : " + str(e) + " (Permisson error : fermer le finchier CSV et recommencez)")
             msg.setWindowTitle("Erreur critique !")
             msg.exec()
-            return
+            
+        else:
+            self.thread = PdfExctract(self.sourceFilePdf, self.destination, text_mode=text_mode)
+            self.thread._signal.connect(self.signal_accept)
+            self.thread.start()
+            self.btnCalcPdf.setEnabled(False)
     
     def signal_accept(self, msg):
-        """traiter les signaux du thread PDF"""
-        self.pBarPdf.setValue(int(int(msg) * 100 / len(self.sourceFilePdf)))
-        if self.pBarPdf.value() >= 99:
-            self.pBarPdf.setValue(0)
-            self.btnCalcPdf.setEnabled(True)
+        """traiter les signaux du thread d'extraction PDF"""
+        if msg > 0:
+            self.pBarPdf.setValue(int(int(msg) * 100 / len(self.sourceFilePdf)))
             
-            msg = QMessageBox()
-            msg.setText("travail terminé !")
-            msg.setWindowTitle("Traitement terminé !")
-            msg.exec()
+            if self.pBarPdf.value() >= 99:
+                #quand la barre de chargement arrive a la fin ...
+                self.pBarPdf.setValue(0)
+                self.btnCalcPdf.setEnabled(True)
+            
+                if self.thread.error_occured["value"]:
+                    #si erreur durant le traitement, on affiche le message d'erreur
+                    msg = QMessageBox()
+                    msg.setText("Travail terminé MAIS avec erreur !" + "\n" + self.thread.error_occured["payload"])
+                    msg.setWindowTitle("Traitement terminé (avec erreur mineure)")
+                    msg.exec()
+                else :
+                    msg = QMessageBox()
+                    msg.setText("travail terminé !")
+                    msg.setWindowTitle("Traitement terminé !")
+                    msg.exec()
             
 if __name__ == "__main__":
     

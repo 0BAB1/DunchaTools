@@ -12,6 +12,8 @@ class PdfExctract(QThread):
         self.destination = destination
         self.text_mode = text_mode
         
+        self.error_occured = {"value" : False, "payload" : ""} #error value and message to read at the end of the thread to notify the user
+        
     def __del__(self):
         self.wait()
         
@@ -21,11 +23,22 @@ class PdfExctract(QThread):
         for file in self.file_list:
             i += 1
             dataTemp = []
-            dataTemp = getData(file, text_mode = self.text_mode)
-            for item in dataTemp:
-                data.append(item)
-            self._signal.emit(i)
             
+            #getData raises an error in case of a corrupt file, so we handle it
+            try :
+                #regular routine
+                dataTemp = getData(file, text_mode = self.text_mode)
+                for item in dataTemp:
+                    data.append(item)
+                self._signal.emit(i)
+                
+            except Exception as e:
+                #si erreur, on emment un signal avec e
+                self.error_occured["value"] = True
+                self.error_occured["payload"] += str(e)
+                self.error_occured["payload"] += "\n \n"
+                dataTemp = []
+                
         with open(self.destination, "w+") as dest :
             for line in data:
                 for element in line :
