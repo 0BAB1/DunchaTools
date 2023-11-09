@@ -14,10 +14,6 @@ from threads import PdfExctract
 from gcodeEstimator import estimation
 
 #to display taskbar icon
-    
-import ctypes
-myappid = u'mycompany.myproduct.subproduct.version' # arbitrary string
-ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 class Window(QMainWindow, Ui_MainWindow):
     """Fenetre principale, herite de l'UI réalisée dans QTDesigner (interface.py)"""
