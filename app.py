@@ -3,7 +3,7 @@
 import sys ,os, time
 # QT & QTDesignerUI imports
 from PyQt6.QtWidgets import (
-    QApplication, QFileDialog, QMainWindow,
+    QApplication, QFileDialog, QMainWindow, QMessageBox
 )
 from PyQt6.uic import loadUi
 from PyQt6 import QtGui
@@ -93,23 +93,61 @@ class Window(QMainWindow, Ui_MainWindow):
     def run_estimation(self):
         """lancer l'estimation gcode"""
         excel_mode = False
-        if self.checkBox.isChecked() : excel_mode = True
-        if not self.sourceFileGcode or not self.destination : return
+        if self.excelModeBox.isChecked() : excel_mode = True
         
-        data = estimation.run(self.sourceFileGcode, excel_mode=excel_mode)
+        if not self.sourceFileGcode or not self.destination :
+            msg = QMessageBox()
+            msg.setText("Erreur interne. Veuillez recommencer.")
+            msg.setWindowTitle("Erreur critique !")
+            msg.exec()
+            return
         
-        estimation.makeCsv(self.destination, data)
+        try :
+            open(self.destination, "w+")
+            
+            data = estimation.run(self.sourceFileGcode, excel_mode=excel_mode)
+            estimation.makeCsv(self.destination, data)
+    
+            msg = QMessageBox()
+            msg.setText("Estimation terminée !")
+            msg.setWindowTitle("travail terminé !")
+            msg.exec()
+            return
+            
+        except Exception as e:
+            msg = QMessageBox()
+            msg.setText("Error : " + str(e) + " (Permisson error : fermer le finchier CSV et recommencez)")
+            msg.setWindowTitle("Erreur critique !")
+            msg.exec()
+            return
 
     def run_extraction(self):
         """lancer le thread de l'extraction pdf"""
-        if not self.sourceFilePdf or not self.destination : return False
+        if not self.sourceFilePdf or not self.destination :
+            msg = QMessageBox()
+            msg.setText("Erreur interne. Veuillez recommencer.")
+            msg.setWindowTitle("Erreur critique !")
+            msg.exec()
+            return
+        
+        
         text_mode = False
         if self.textModeBox.isChecked() : text_mode = True
         #lancer le THREAD PDF
-        self.thread = PdfExctract(self.sourceFilePdf, self.destination, text_mode=text_mode)
-        self.thread._signal.connect(self.signal_accept)
-        self.thread.start()
-        self.btnCalcPdf.setEnabled(False)
+        try :
+            open(self.destination, "w+")
+    
+            self.thread = PdfExctract(self.sourceFilePdf, self.destination, text_mode=text_mode)
+            self.thread._signal.connect(self.signal_accept)
+            self.thread.start()
+            self.btnCalcPdf.setEnabled(False)
+            
+        except Exception as e:
+            msg = QMessageBox()
+            msg.setText("Error : " + str(e) + " (Permisson error : fermer le finchier CSV et recommencez)")
+            msg.setWindowTitle("Erreur critique !")
+            msg.exec()
+            return
     
     def signal_accept(self, msg):
         """traiter les signaux du thread PDF"""
@@ -117,6 +155,11 @@ class Window(QMainWindow, Ui_MainWindow):
         if self.pBarPdf.value() >= 99:
             self.pBarPdf.setValue(0)
             self.btnCalcPdf.setEnabled(True)
+            
+            msg = QMessageBox()
+            msg.setText("travail terminé !")
+            msg.setWindowTitle("Traitement terminé !")
+            msg.exec()
             
 if __name__ == "__main__":
     
