@@ -1,4 +1,4 @@
-# DunchaTools V 1.0
+# DunchaTools V 1.1
 
 ## contiens :
 
@@ -31,3 +31,8 @@ Faire les modifs
 Executer :
 
 ```python -m PyQt6.uic.pyuic .\UI\interface.ui -o interface.py -x```
+
+## Cahngelog
+
+V1.0 : init
+V1.1 : add errors handling
