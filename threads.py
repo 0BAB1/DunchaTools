@@ -38,6 +38,7 @@ class PdfExctract(QThread):
                 self.error_occured["payload"] += str(e)
                 self.error_occured["payload"] += "\n \n"
                 dataTemp = []
+                self._signal.emit(i)
                 
         with open(self.destination, "w+") as dest :
             for line in data:
