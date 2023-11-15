@@ -1,4 +1,4 @@
-# DunchaTools V 1.1
+# DunchaTools V 1.1.2
 
 DunchaTools est une application développée par BRH basée sur PyQT, la version Python de QT6.
 
@@ -45,3 +45,4 @@ python -m PyInstaller -D -n dunchaToolBox --windowed --icon="../UI/logo/favicon.
 
 V1.0 : init
 V1.1 : add errors handling
+V1.1.2 : improve UX
