@@ -29,7 +29,7 @@ python ./app.py
 pip install pyinstaller
 mkdir build
 cd build
-python -m PyInstaller -D -n dunchaToolBox --windowed --icon="../UI/logo/favicon.ico" ../app.py
+python -m PyInstaller -D -n dunchaToolBox --windowed --icon="../UI/logo/favicon.ico" --add-data="../UI/logo;./UI/logo" ../app.py
 ```
 
 ## modifier interface :
