@@ -3,7 +3,7 @@
 import sys ,os, time
 # QT & QTDesignerUI imports
 from PyQt6.QtWidgets import (
-    QApplication, QFileDialog, QMainWindow, QMessageBox
+    QApplication, QFileDialog, QMainWindow, QMessageBox, QSplashScreen
 )
 from PyQt6.uic import loadUi
 from PyQt6 import QtGui
@@ -170,9 +170,19 @@ class Window(QMainWindow, Ui_MainWindow):
 if __name__ == "__main__":
     
     app = QApplication(sys.argv)
+    #loading splash screen
+    pixmap = QtGui.QPixmap("./UI/logo/duncha.jpeg")
+    splash = QSplashScreen(pixmap=pixmap)
+    splash.show()
+    splash.showMessage("CHARGEMENT...")
+    
     win = Window()
-    win.show()
+    
+    splash.showMessage("Chargement terminé, lancement...")
+    
     basedir = os.path.dirname(__file__)
     app.setWindowIcon(QtGui.QIcon(os.path.join(basedir,"UI", 'logo', 'favicon.ico')))
+    win.show()
+    splash.hide()
     
     sys.exit(app.exec())
