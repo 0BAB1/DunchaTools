@@ -1,21 +1,17 @@
 #IMPORTS
-#générique
-import sys ,os, time
-# QT & QTDesignerUI imports
+import sys ,os
 from PyQt6.QtWidgets import (
-    QApplication, QFileDialog, QMainWindow, QMessageBox, QSplashScreen
+    QApplication,  QMainWindow, QSplashScreen, QFileDialog, QMessageBox
 )
+
 from PyQt6.uic import loadUi
 from PyQt6 import QtGui
 from interface import Ui_MainWindow
-#importer sub-classe de QT customisées
 from threads import PdfExctract
-# importer les script
 from gcodeEstimator import estimation
 
-#to display taskbar icon
-
 class Window(QMainWindow, Ui_MainWindow):
+    
     """Fenetre principale, herite de l'UI réalisée dans QTDesigner (interface.py)"""
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -148,7 +144,7 @@ class Window(QMainWindow, Ui_MainWindow):
     def signal_accept(self, msg):
         """traiter les signaux du thread d'extraction PDF"""
         if msg > 0:
-            self.pBarPdf.setValue(int(int(msg) * 100 / len(self.sourceFilePdf)))
+            self.pBarPdf.setValue(int( (int(msg)) * 100 / len(self.sourceFilePdf)))
             
             if self.pBarPdf.value() >= 99:
                 #quand la barre de chargement arrive a la fin ...

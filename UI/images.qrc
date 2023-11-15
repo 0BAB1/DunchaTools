@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>logo/duncha.jpeg</file>
     <file>feather/activity.svg</file>
     <file>feather/airplay.svg</file>
     <file>feather/alert-circle.svg</file>
@@ -289,6 +290,7 @@
     <file>feather/zoom-out.svg</file>
   </qresource>
   <qresource prefix="logo">
+    <file>logo/duncha.jpeg</file>
     <file>logo/duncha.png</file>
     <file>logo/favicon.ico</file>
   </qresource>
