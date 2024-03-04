@@ -43,7 +43,7 @@ python -m PyInstaller -D -n dunchaToolBox --windowed --icon="../UI/logo/favicon.
 
 ```python -m PyQt6.uic.pyuic .\UI\interface.ui -o interface.py -x```
 
-## Cahngelog
+## Changelog
 
 V1.0 : init
 V1.1 : add errors handling
