@@ -1,3 +1,7 @@
+# ====================================
+# Defines functions to convert files
+# ===================================
+
 def toCsv(data : list, filter : bool = True) -> None:
     """turns data into csv, use filter (True by default) to get rid of symbols"""
     with open("data.csv", "w+") as csvFile:
@@ -18,7 +22,7 @@ def toCsv(data : list, filter : bool = True) -> None:
                 csvFile.write(line + "\n")
 
 def removeSymbols(txt : str):
-    """removes symbols from text"""
+    """LOCAL FUNCTION used for converting puposes : removes symbols from text"""
     symbolsToRemove = "[]'\"*/" #symbols to remove
     for symbol in symbolsToRemove:
         txt = txt.replace(symbol, "")  #remove symbols

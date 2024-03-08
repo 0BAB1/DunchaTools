@@ -1,22 +1,33 @@
+# ====================================================================
+# Defines functions to get data from the PDF file out in a table/list 
+# ====================================================================
+
 import os
 import pdfplumber as pb
+# Had some problem while doing imports for tests cases so i used both methods :
 try :
-    from . import clear_sorted_data as clear
     from . import sort
 except ImportError:
-    import clear_sorted_data as clear
     import sort
 
+def treat_line(line : str) -> list:
+    """Return the imput as a splited list"""
+    # I use space for now and it's doing great ! could improve by allowing user to customize separators
+    line = line.split(" ")
+    return line
+
 def getData(file_path : list, text_mode = False) -> list:
-    """extraire la data des tableaux d'un fichier pdf"""
-    #modele de data : [[ligne 1 du csv final], [ligne2], [etc...], etc...]
+    """extraire la data des tableaux d'un fichier pdf. Set text_mode to True if you want raw data or Flase if you want to extract table structures"""
+    # modele de data : [[ligne 1 du csv final], [ligne2], [etc...], etc...]
     data = []
     
     with pb.open(file_path) as pdf:
         #lire chaque page
         for page in pdf.pages:
             
-            try : #sometimes, files are courrupted, so we try and raise an exception taht can be handled in the extraction thread.
+            # Sometimes, files are courrupted which crashes the PyQt app extraction thread (when batch extract using the app)
+            # To avoid this bug, we try and raise an Exception that will be aknoleged by the thread and the file will be skipped (and user will be informed)
+            try : 
                 if not text_mode:
                     #extraire les tebleaux de la page
                     tables = page.find_tables()
@@ -25,20 +36,22 @@ def getData(file_path : list, text_mode = False) -> list:
                         table = table.extract()
                         #lire chaque ligne (de chaque page) (de chque tableau)
                         for line in table:
+                            line.insert(0, sort.get_file_name(file_path)) # add the fileName at each line
                             data.append(line)
                         
                 elif text_mode:
                     #extraire le texte de la page
                     text = page.extract_text()
-                    #lire chaque ligne (de chaque page)
+                    #lire chaque ligne
                     for line in text.split("\n"):
-                        line = sort.treat_line(line)
+                        line = treat_line(line) # reutrns line as raw splited list
+                        line.insert(0, sort.get_file_name(file_path)) # add the fileName at each line
                         data.append(line)
                         
             except Exception as e:
-                #we raise an error if file is corrupted, file_path.split("/")[0] is the nae of the file at the end of the path
-                raise Exception("Erreur FICHIER CORROMPU : " + file_path.split("/")[-1] + "\n" + "Code erreur : " + str(e))
+                # We raise an error if file is corrupted
+                raise Exception("Erreur FICHIER CORROMPU : " + sort.get_file_name(file_path) + "\n" + "Code erreur : " + str(e))
                     
-        print(file_path.split("/")[-1] + " was successfully processed ! Processing next file ...")
+        print(sort.get_file_name(file_path) + " was successfully processed ! Processing next file ...")
 
     return data

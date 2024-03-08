@@ -7,3 +7,4 @@ app.spec
 ~$P_Duncha_Application.doc
 *.tmp
 .env
+exampleFiles/

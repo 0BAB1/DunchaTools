@@ -8,3 +8,4 @@ pyinstaller
 data
 sorted_data
 build
+exampleFiles/

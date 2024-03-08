@@ -11,7 +11,6 @@ from threads import PdfExctract
 from gcodeEstimator import estimation
 
 class Window(QMainWindow, Ui_MainWindow):
-    
     """Fenetre principale, herite de l'UI réalisée dans QTDesigner (interface.py)"""
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -21,7 +20,7 @@ class Window(QMainWindow, Ui_MainWindow):
         #page par defaut : home page
         self.stackedWidget.setCurrentWidget(self.home)
         #attributs fichiers
-        self.sourceFileGcode, self.sourceFilePdf, self.destination = None, None, None
+        self.sourceFileGcode, self.sourceFilesPdf, self.destination = None, None, None
         
     def connectSignalsSlots(self):
         """connecter toutes les action definies dans QtDesigner a leur fonction respective"""
@@ -62,7 +61,7 @@ class Window(QMainWindow, Ui_MainWindow):
                 self.sourceFileGcode = selected_file
                 
     def select_files_pdf(self):
-        """selecetionner plusieurs fchiers source format PDF"""
+        """selecetionner plusieurs fichiers source format PDF"""
         file_dialog = QFileDialog(self, "Ouvrir", "", "PDF (*.pdf)")
         file_dialog.setViewMode(QFileDialog.ViewMode.List)
         file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
@@ -71,7 +70,7 @@ class Window(QMainWindow, Ui_MainWindow):
             selected_files = file_dialog.selectedFiles()
             if selected_files:
                 self.labelSourcePdf.setText(str(len(selected_files)) + " fichier.s PDF selectionné.s")
-                self.sourceFilePdf = selected_files
+                self.sourceFilesPdf = selected_files
     
     def select_dest(self):
         """selectionner un fichier de destination forme CSV (format commun pour data output)"""
@@ -108,14 +107,14 @@ class Window(QMainWindow, Ui_MainWindow):
             
         except Exception as e:
             msg = QMessageBox()
-            msg.setText("Error : " + str(e) + " (Permisson error : fermer le finchier CSV et recommencez)")
+            msg.setText("Error : " + str(e) + " (Causes probables : Fermez le fichier CSV de destination ||| Verifiez votre fichier d'entrée)")
             msg.setWindowTitle("Erreur critique !")
             msg.exec()
             return
 
     def run_extraction(self):
         """lancer le thread de l'extraction pdf"""
-        if not self.sourceFilePdf or not self.destination :
+        if not self.sourceFilesPdf or not self.destination :
             msg = QMessageBox()
             msg.setText("Erreur interne. Veuillez recommencer.")
             msg.setWindowTitle("Erreur critique !")
@@ -125,18 +124,20 @@ class Window(QMainWindow, Ui_MainWindow):
         
         text_mode = False
         if self.textModeBox.isChecked() : text_mode = True
-        #lancer le THREAD PDF
+        # Lunch batch exctract pdf thread
+        # Firts, check we have acces to the destination CSV file
         try :
             open(self.destination, "w+")
             
         except Exception as e:
+            # If we don't, simply display error window to inform user (without crashing the whole app)
             msg = QMessageBox()
-            msg.setText("Error : " + str(e) + " (Permisson error : fermer le finchier CSV et recommencez)")
+            msg.setText("Error : " + str(e) + " (Permisson error : fermez le fichier CSV et recommencez)")
             msg.setWindowTitle("Erreur critique !")
             msg.exec()
             
         else:
-            self.thread = PdfExctract(self.sourceFilePdf, self.destination, text_mode=text_mode)
+            self.thread = PdfExctract(self.sourceFilesPdf, self.destination, text_mode=text_mode)
             self.thread._signal.connect(self.signal_accept)
             self.thread.start()
             self.btnCalcPdf.setEnabled(False)
@@ -144,7 +145,7 @@ class Window(QMainWindow, Ui_MainWindow):
     def signal_accept(self, msg):
         """traiter les signaux du thread d'extraction PDF"""
         if msg > 0:
-            self.pBarPdf.setValue(int( (int(msg)) * 100 / len(self.sourceFilePdf)))
+            self.pBarPdf.setValue(int( (int(msg)) * 100 / len(self.sourceFilesPdf)))
             
             if self.pBarPdf.value() >= 99:
                 #quand la barre de chargement arrive a la fin ...
